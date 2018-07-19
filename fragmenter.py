@@ -38,16 +38,14 @@ def get_ctab_and_names(n_parcel, coords, labels, use_pretty_colors=True):
         # Compute mean height (on z-axis) per label to resort color table
         label_centers = np.array(
             [np.mean(coords[labels == l], axis=0) for l in np.unique(labels)])
-        label_order = np.argsort(label_centers[:, 2])
 
-        # Verify that no label is missing from the data
-        assert len(np.unique(label_order)) == n_parcel
+        # Find new order of labels
+        label_order = np.argsort(label_centers[:, 2]) + 1
 
-        # Reorder color table and region names
-        ctab = np.vstack((ctab[0], ctab[1:][label_order]))
-        names = [names[0]] + np.array(names)[1:][label_order].tolist()
+        # Relabels labels accordingly
+        labels = np.array([np.where(label_order==l)[0][0] + 1 for l in labels])
 
-    return ctab, names
+    return ctab, names, labels
 
 
 def fragment_parcel(coords, n_parcel, algorithm='kmeans', mask=None,
@@ -99,7 +97,7 @@ def fragment_parcel(coords, n_parcel, algorithm='kmeans', mask=None,
         labels = np.copy(model.labels_).astype(np.int) + 1
 
     # Create color table and region names for annotation file
-    ctab, names = get_ctab_and_names(
+    ctab, names, labels = get_ctab_and_names(
         n_parcel, roi_coords, labels, use_pretty_colors)
 
     # Extend labels to whole spherical surface mesh
@@ -181,8 +179,7 @@ if __name__ == '__main__':
         use_pretty_colors=True, output_file=fpath_out)
 
     # Plot fragmented parcellation
-    surfaces_to_plot = ['inflated', 'sphere', 'pial']
-    surfaces_to_plot = ['sphere']
+    surfaces_to_plot = ['sphere', 'inflated', 'pial']
     for surface in surfaces_to_plot:
         plot_fragment(fragment_file,
                       'plot_%s_%s_%05d.png' % (
