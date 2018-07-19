@@ -32,7 +32,7 @@ def get_ctab_and_names(n_parcel, coords, labels, use_pretty_colors=True):
     names = [np.bytes_('unknown')] + \
         [np.bytes_('parc%05d' % (i + 1)) for i in range(n_parcel)]
 
-    # Reorder table and names according height on z-axis if requested
+    # Reorder table and names according distance to sphere "bottom"
     if use_pretty_colors:
 
         # Compute mean height (on z-axis) per label to resort color table
@@ -40,10 +40,13 @@ def get_ctab_and_names(n_parcel, coords, labels, use_pretty_colors=True):
             [np.mean(coords[labels == l], axis=0) for l in np.unique(labels)])
 
         # Find new order of labels
-        label_order = np.argsort(label_centers[:, 2]) + 1
+        sphere_bottom = [0, 0, -100]
+        label_order = np.argsort(np.linalg.norm(
+            label_centers - sphere_bottom, axis=1)) + 1
 
         # Relabels labels accordingly
-        labels = np.array([np.where(label_order==l)[0][0] + 1 for l in labels])
+        labels = np.array(
+            [np.where(label_order == l)[0][0] + 1 for l in labels])
 
     return ctab, names, labels
 
@@ -181,7 +184,7 @@ if __name__ == '__main__':
     # Plot fragmented parcellation
     surfaces_to_plot = ['sphere', 'inflated', 'pial']
     for surface in surfaces_to_plot:
-        plot_fragment(fragment_file,
+        plot_fragment(fpath_out,
                       'plot_%s_%s_%05d.png' % (
                           algorithm, surface, n_parcel),
                       fpath_sphere,
