@@ -6,7 +6,6 @@ Created on Mon Oct  3 15:31:06 2016
 """
 
 import networkx as nx
-from nibabel import nib
 import numpy as np
 
 
@@ -15,26 +14,20 @@ class SurfaceAdjacency(object):
     Class to generate an adjancey list  of a surface mesh representation
     of the brain.
 
+    Initialize SurfaceAdjacency object.
+
     Parameters:
-    ------------
-
-    surface : string
-        path to surf.gii file
-
+    - - - - -
+    vertices : array
+        vertex coordinates
+    faces : list
+        list of faces in surface
     """
 
-    def __init__(self, surface):
+    def __init__(self, vertices, faces):
 
-        """
-        Initialize SurfaceAdjacency object.
-        """
-
-        # read surface file
-        # get vertices and faces
-
-        surface = nib.load(surface)
-        self.vertices = surface.darrays[0].data
-        self.faces = surface.darrays[1].data
+        self.vertices = vertices
+        self.faces = faces
 
     def generate(self):
 

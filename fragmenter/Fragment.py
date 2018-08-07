@@ -1,3 +1,4 @@
+import adjacency
 import clusterings
 
 METHODS = ['gmm', 'k_means', 'spectral', 'ward']
@@ -21,7 +22,8 @@ class Fragment(object):
         self.n_clusters = n_clusters
         self.use_pretty_colors = use_pretty_colors
 
-    def fit(self, vertices, faces, method='kmeans', rois=None):
+    def fit(
+            self, vertices, faces, method='kmeans', rois=None, mask=None):
 
         """
         Main surface fragmentation wrapper.
@@ -38,17 +40,27 @@ class Fragment(object):
             specific regions to fragment.  If None, fragment all regions.
         """
 
+        # make sure method exists in allowed algorithms
         assert method in METHODS
+        n_clusters = self.n_clusters
 
+        # if provided method is spectral clustering,
+        # generate adjacency matrix
         if method == 'spectral':
-            pass
+            surf_adj = adjacency.SurfaceAdjacency(vertices, faces)
+            surf_adj.generate()
+            samples = surf_adj.filtration(filter_indices=mask, to_array=True)
+        else:
+            samples = vertices
 
+        # define function dictionary
         clust_funcs = {
             'gmm': clusterings.gmm(),
             'kmeans': clusterings.kmeans(),
             'spectral': clusterings.spectral_clustering(),
             'ward': clusterings.ward()}
 
-        label = clust_funcs[method]()
+        # generate fragmentation
+        label = clust_funcs[method](n_clusters, samples)
 
         self.label_ = label
