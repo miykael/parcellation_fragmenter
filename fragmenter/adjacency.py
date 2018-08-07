@@ -29,31 +29,33 @@ class SurfaceAdjacency(object):
         self.vertices = vertices
         self.faces = faces
 
-    def generate(self):
+    def generate(self, indices=None):
 
         """
         Method to create surface adjacency list.
         """
 
         # Get faces attribute
-        faces = self.faces
-        ids = list(set(np.squeeze(np.concatenate(faces))))
+        faces = self.faces.tolist()
+        accepted = np.zeros((self.vertices.shape[0]))
+
+        # get indices of interest
+        if not indices:
+            indices = list(np.unique(np.concatenate(faces)))
+        indices = np.sort(indices)
+
+        # create array of whether indices are included
+        # cancels out search time in loop
+        accepted[indices] = 1
+        accepted = accepted.astype(bool)
 
         # Initialize adjacency list
-        adjacency = {k: [] for k in ids}
+        adjacency = {k: [] for k in indices}
 
-        c = [0, 1, 2]
-
-        for k in np.arange(faces.shape[0]):
-
-            face = faces[k, :]
-
-            for j in c:
-
-                currentVertex = face[j]
-                m = np.delete(face, j)
-
-                adjacency[currentVertex].append(m)
+        # loop over faces in mesh
+        for face in faces:
+            nbs = [n for n in face[1:] if accepted[n]]
+            adjacency[face[0]].append(nbs)
 
         for k in adjacency.keys():
             adjacency[k] = list(set(np.concatenate(adjacency[k])))

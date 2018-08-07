@@ -4,7 +4,6 @@ from nilearn.plotting import plot_surf_roi
 from sklearn import cluster, mixture, neighbors
 
 
-
 def fragment_parcel(coords, n_parcel, algorithm='kmeans', mask=None,
                     use_pretty_colors=True, output_file='_h.fragment.annot'):
     """
