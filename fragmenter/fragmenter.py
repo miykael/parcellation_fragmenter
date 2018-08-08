@@ -8,6 +8,23 @@ def fragment_parcel(coords, n_parcel, algorithm='kmeans', mask=None,
                     use_pretty_colors=True, output_file='_h.fragment.annot'):
     """
     Fragments specified region according to a given clustering algorithm
+
+    Runs Mini Batch KMeans, Gaussian Mixture Model,
+    or AgglomerativeClustering and Ward algorithm.
+
+    Parameters
+    - - - - -
+    coords: array
+        veretex coordinates
+    n_parcel:
+    algorithm
+    mask:
+    use_pretty_colors:
+    output_file:
+
+    Output
+    - - - -
+
     """
 
     # Mask coordinates with roi_mask
