@@ -2,7 +2,7 @@ import numpy as np
 from sklearn import cluster, mixture, neighbors
 
 
-def spectral_clustering(n_clusters, samples):
+def spectral_clustering(n_clusters, samples, size=False):
 
     """
     Run k-means clustering on vertex coordinates.
@@ -15,6 +15,7 @@ def spectral_clustering(n_clusters, samples):
         adjacency matrix of surface or region
     """
 
+    # Run Spectral Clustering
     spectral = cluster.SpectralClustering(
         n_clusters=n_clusters, affinity='precomputed')
     spectral.fit(samples)
@@ -38,10 +39,10 @@ def k_means(n_clusters, samples):
         Euclidean-space coordinates of vertices
     """
 
-    # Run Mini Batch KMeans algorithm
+    # Run Mini-Batch K-Means
     k_means = cluster.MiniBatchKMeans(
         n_clusters=n_clusters, init='k-means++', max_iter=1000,
-        batch_size=10000, verbose=True, compute_labels=True,
+        batch_size=10000, verbose=False, compute_labels=True,
         max_no_improvement=100, n_init=5, reassignment_ratio=0.1)
     k_means.fit(samples)
 
@@ -64,14 +65,13 @@ def gmm(n_clusters, samples):
         Euclidean-space coordinates of vertices
     """
 
-    # Run Gaussian Mixture Model algorithm
+    # Fit Gaussian Mixture Model
     gmm = mixture.GaussianMixture(
         n_components=n_clusters, covariance_type='tied', max_iter=1000,
-        init_params='kmeans', verbose=1)
+        init_params='kmeans', verbose=0)
     gmm.fit(samples)
 
-    gmm.fit(samples)
-    labels = ward.labels_.copy()
+    labels = gmm.predict(samples)
     labels = labels.astype(np.int32)+1
 
     return labels
@@ -90,11 +90,12 @@ def ward(n_clusters, samples):
         Euclidean-space coordinates of vertices
     """
 
-    # Run AgglomerativeClustering and Ward algorithm
+    # Generate KNN graph
     knn_graph = neighbors.kneighbors_graph(
-        n_clusters, n_neighbors=20, mode='connectivity',
-        metric='minkowski', p=2, include_self=False, n_jobs=-1)
+        samples, n_neighbors=20, mode='connectivity', metric='minkowski', p=2,
+        include_self=False, n_jobs=-1)
 
+    # Apply Ward-Agglomerative clustering
     ward = cluster.AgglomerativeClustering(
         n_clusters=n_clusters, affinity='euclidean', connectivity=knn_graph,
         linkage='ward')

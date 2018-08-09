@@ -22,7 +22,7 @@ def fragment_parcel(coords, n_parcel, algorithm='kmeans', mask=None,
         number of parcellations
     algorithm: string
         which algorithm to use
-    mask:
+    mask: 
 
     use_pretty_colors: bool
         use gradient color scheme for viewing map

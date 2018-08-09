@@ -24,9 +24,8 @@ def region_indices(lab_obj, regions=None):
     else:
         indices = []
 
-    	for r in regions:
-    		indices.append(np.where(cdata == reg2lab[r])[0])
+        for r in regions:
+            indices.append(np.where(cdata == reg2lab[r])[0])
+        indices = np.concatenate(indices)
 
-    	indices = np.concatenate(indices)
-
-	return indices
+    return indices
