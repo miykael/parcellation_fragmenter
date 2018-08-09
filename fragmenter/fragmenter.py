@@ -10,21 +10,28 @@ def fragment_parcel(coords, n_parcel, algorithm='kmeans', mask=None,
     Fragments specified region according to a given clustering algorithm
 
     Runs Mini Batch KMeans, Gaussian Mixture Model,
-    or AgglomerativeClustering and Ward algorithm.
+    or AgglomerativeClustering and Ward clustering algorithm to
+    fragment specified region and returns .annot file with
+    parcellation data.
 
     Parameters
     - - - - -
     coords: array
-        veretex coordinates
-    n_parcel:
-    algorithm
+        vertex coordinates
+    n_parcel: int
+        number of parcellations
+    algorithm: string
+        which algorithm to use
     mask:
-    use_pretty_colors:
-    output_file:
+
+    use_pretty_colors: bool
+        use gradient color scheme for viewing map
+    output_file: string
+        .annot file to return fragmentation
 
     Output
     - - - -
-
+    .annot file of fragmentation for specified region
     """
 
     # Mask coordinates with roi_mask

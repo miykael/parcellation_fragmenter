@@ -11,7 +11,7 @@ import numpy as np
 
 class SurfaceAdjacency(object):
     """
-    Class to generate an adjancey list  of a surface mesh representation
+    Class to generate an adjacency list  of a surface mesh representation
     of the brain.
 
     Initialize SurfaceAdjacency object.
