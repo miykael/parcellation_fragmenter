@@ -16,11 +16,11 @@ The parcellation can be done by using a Gaussian Mixed Model, a Ward or a K-Mean
 
 The following figure shows an example of a whole surface fragmentation for 16, 64, 256, 1024, 4096 parcels using a Gaussian Mixed Models approach:
 
-<img src="summary_gmm.png" width="100%">
+<img src="./figures/summary_gmm.png" width="100%">
 
 The following figure shows an example of a fragmentation of the primary auditory cortex for 4, 16, 64, 256, 1024 using a K-Means approach:
 
-<img src="summary_A1_kmeans.png" width="100%">
+<img src="./figures/summary_A1_kmeans.png" width="100%">
 
 
 # How to install it
