@@ -1,9 +1,10 @@
+from fragmenter import NullBase
 from fragmenter import rotations
 import numpy as np
 from scipy.spatial import KDTree
 
 
-class NullModel(object):
+class NullModel(NullBase.NullBase):
     """
     Class to generate null models of parcellations by perturbing an existing
     map using KD-Trees for the nearest neighor search.
@@ -14,7 +15,7 @@ class NullModel(object):
             vertex coordinates of a spherical mesh
         label: (N, 1) array
             vertex labels
-        mask: (N, 1) array
+        mask: list
             list of non-midline vertices
     """
 
@@ -50,8 +51,8 @@ class NullModel(object):
 
         Parameters:
         - - - - -
-            maxd_x, maxd_y, maxd_z : float
-                maximum range of angle to sample for each direction
+        maxd_x, maxd_y, maxd_z : float
+            maximum range of angle to sample for each direction
         """
 
         x = np.deg2rad(np.random.uniform(-maxd_x, maxd_x, 1))
