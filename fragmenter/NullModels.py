@@ -10,16 +10,22 @@ class NullModel(object):
 
     Parameters:
     - - - - -
-        sphere: (N,3) array
+        sphere: (N, 3) array
             vertex coordinates of a spherical mesh
-        label: (N,1)) array
+        label: (N, 1) array
             vertex labels
+        mask: (N, 1) array
+            list of non-midline vertices
     """
 
     def __init__(self, sphere, label, mask=None):
 
         self.label = label
         self.sphere = sphere
+
+        if not np.any(mask):
+            mask = np.arange(label.shape[0])
+
         self.mask = mask
 
     def fit(self):
@@ -29,14 +35,11 @@ class NullModel(object):
 
         rotated = self._rotate()
 
-        if not np.any(self.mask):
-                mask = np.arange(len(self.labels))
-
         print('Fitting KD-Tree')
         K = KDTree(rotated)
 
         print('Querying tree for nearest neighbors.')
-        kdnn = K.query(self.sphere[mask, :], k=1)
+        kdnn = K.query(self.sphere[self.mask, :], k=1)
         kd_label = self.label[kdnn[1]]
 
         return kd_label
