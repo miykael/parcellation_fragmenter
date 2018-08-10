@@ -12,4 +12,6 @@ include versioneer.py
 include fragmenter/_version.py
 
 # If including data files in the package, add them like:
-# include path/to/data_file
+include data/hcp/*
+include data/freesurfer/fsaverage/surf/*surf
+include data/freesurfer/fsaverage/label/*annot
