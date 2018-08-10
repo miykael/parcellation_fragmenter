@@ -9,11 +9,6 @@ def region_indices(lab_obj, regions=None):
     - - - - -
     lab_obj : GiftiImage
         loaded label object
-
-	Output:
-	- - - -
-	append indices to region
-	add label table of indices to region
     """
     cdata = lab_obj.darrays[0].data
     lt = lab_obj.get_labeltable().get_labels_as_dict()
@@ -24,8 +19,9 @@ def region_indices(lab_obj, regions=None):
     else:
         indices = []
 
-        for r in regions:
-            indices.append(np.where(cdata == reg2lab[r])[0])
-        indices = np.concatenate(indices)
+    	for r in regions:
+    		indices.append(np.where(cdata == reg2lab[r])[0])
 
-    return indices
+    	indices = np.concatenate(indices)
+
+	return indices
