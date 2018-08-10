@@ -42,6 +42,9 @@ class NullModel(object):
         kdnn = K.query(self.sphere[self.mask, :], k=1)
         kd_label = self.label[kdnn[1]]
 
+        # Increase labels by one to prevent transparent mesh
+        kd_label += 1
+
         return kd_label
 
     def _rotate(self, maxd_x=10, maxd_y=10, maxd_z=10):
