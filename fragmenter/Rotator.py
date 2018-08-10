@@ -4,7 +4,7 @@ import numpy as np
 from scipy.spatial import KDTree
 
 
-class NullModel(NullBase.NullBase):
+class Rotator(NullBase.NullBase):
     """
     Class to generate null models of parcellations by perturbing an existing
     map using KD-Trees for the nearest neighor search.
@@ -23,29 +23,32 @@ class NullModel(NullBase.NullBase):
 
         self.label = label
         self.sphere = sphere
-
-        if not np.any(mask):
-            mask = np.arange(label.shape[0])
-
         self.mask = mask
 
-    def fit(self):
+    def fit(self, maxd_x=10, maxd_y=10, maxd_z=10):
         """
         Wrapper method for generating null models.
         """
 
-        rotated = self._rotate()
+        rotated = self._rotate(maxd_x, maxd_y, maxd_z)
+        idx = self.mask
 
         print('Fitting KD-Tree')
-        K = KDTree(rotated)
+        K = KDTree(rotated[idx, :])
 
         print('Querying tree for nearest neighbors.')
-        kdnn = K.query(self.sphere[self.mask, :], k=1)
-        kd_label = self.label[kdnn[1]]
+        kd_label = np.zeros(self.label.shape)
+
+        if np.any(idx):
+            kdnn = K.query(self.sphere[idx, :], k=1)
+            kd_label[idx] = self.label[idx][kdnn[1]]
+        else:
+            kdnn = K.query(self.shere, k=1)
+            kd_label = self.label[kdnn[1]]
 
         return kd_label
 
-    def _rotate(self, maxd_x=10, maxd_y=10, maxd_z=10):
+    def _rotate(self, maxd_x, maxd_y, maxd_z):
         """
         Randomly rotate the original spherical mesh.
 
