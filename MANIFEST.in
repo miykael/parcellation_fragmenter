@@ -12,6 +12,9 @@ include versioneer.py
 include fragmenter/_version.py
 
 # If including data files in the package, add them like:
-include ./data/hcp/*[label.gii, surf.gii]
-include ./data/freesurfer/fsaverage/surf/*[pial,inflated,sphere]
+include ./data/hcp/*label.gii
+include ./data/hcp/*surf.gii
+include ./data/freesurfer/fsaverage/surf/*pial
+include ./data/freesurfer/fsaverage/surf/*inflated
+include ./data/freesurfer/fsaverage/surf/*sphere
 include ./data/freesurfer/fsaverage/label/*annot
