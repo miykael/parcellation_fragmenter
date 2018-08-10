@@ -11,7 +11,7 @@ import numpy as np
 
 class SurfaceAdjacency(object):
     """
-    Class to generate an adjancey list  of a surface mesh representation
+    Class to generate an adjacency list  of a surface mesh representation
     of the brain.
 
     Initialize SurfaceAdjacency object.
@@ -30,7 +30,6 @@ class SurfaceAdjacency(object):
         self.faces = faces
 
     def generate(self, indices=None):
-
         """
         Method to create surface adjacency list.
         """
@@ -40,28 +39,32 @@ class SurfaceAdjacency(object):
         accepted = np.zeros((self.vertices.shape[0]))
 
         # get indices of interest
-        if not indices:
+        if not np.any(indices):
             indices = list(np.unique(np.concatenate(faces)))
         indices = np.sort(indices)
 
         # create array of whether indices are included
-        # cancels out search time in loop
+        # cancels out search time
         accepted[indices] = 1
         accepted = accepted.astype(bool)
 
         # Initialize adjacency list
-        adjacency = {k: [] for k in indices}
+        adj = {k: [] for k in indices}
 
         # loop over faces in mesh
         for face in faces:
-            nbs = [n for n in face[1:] if accepted[n]]
-            adjacency[face[0]].append(nbs)
+            for j, vertex in enumerate(face):
+                idx = (np.asarray(face) != vertex)
+                if accepted[vertex]:
+                    nbs = [n for n in np.asarray(face)[idx] if accepted[n]]
+                    adj[face[j]].append(nbs)
 
-        for k in adjacency.keys():
-            adjacency[k] = list(set(np.concatenate(adjacency[k])))
+        for k in adj.keys():
+            if adj[k]:
+                adj[k] = list(set(np.concatenate(adj[k])))
 
         # Set adjacency list field
-        self.adj = adjacency
+        self.adj = adj
 
     def filtration(self, filter_indices=None, toArray=False, remap=False):
         """
@@ -83,7 +86,7 @@ class SurfaceAdjacency(object):
             down-sampled adjacency list / matrix
         """
 
-        assert hasattr(self, 'adjacency')
+        assert hasattr(self, 'adj')
 
         if not np.any(filter_indices):
             G = self.adj.copy()
