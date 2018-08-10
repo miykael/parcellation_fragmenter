@@ -46,6 +46,9 @@ class Rotator(NullBase.NullBase):
             kdnn = K.query(self.shere, k=1)
             kd_label = self.label[kdnn[1]]
 
+        # Increase labels by one to prevent transparent mesh
+        kd_label += 1
+
         return kd_label
 
     def _rotate(self, maxd_x, maxd_y, maxd_z):

@@ -2,7 +2,19 @@ import numpy as np
 
 
 def region_indices(lab_obj, regions=None):
+	"""
+	Add labels to indices of region
 
+    Parameters:
+    - - - - -
+    lab_obj : GiftiImage
+        loaded label object
+
+	Output:
+	- - - -
+	append indices to region
+	add label table of indices to region
+    """
     cdata = lab_obj.darrays[0].data
     lt = lab_obj.get_labeltable().get_labels_as_dict()
     reg2lab = dict(zip(map(str, lt.values()), lt.keys()))

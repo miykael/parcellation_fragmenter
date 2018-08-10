@@ -115,4 +115,7 @@ class Fragment(object):
 
                     label[parcel_idx] = clusters
 
+        # Increase labels by one to prevent transparent mesh
+        label += 1
+
         self.label_ = label
