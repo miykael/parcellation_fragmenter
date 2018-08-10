@@ -36,7 +36,8 @@ setup(
     name='fragmenter',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    description="Fragments FreeSurfer parcellation annotation in N-equal sized parcels.",
+    description="Fragments FreeSurfer parcellation annotation' \
+        ' in N-equal sized parcels.",
     long_description=readme,
     author="Kristian Eschenburg",
     author_email='keschenb@uw.edu',
@@ -50,9 +51,11 @@ setup(
     include_package_data=True,
     package_data={
         'fragmenter': [
-            # When adding files here, remember to update MANIFEST.in as well,
-            # or else they will not be included in the distribution on PyPI!
-            # 'path/to/data_file',
+            ./data/hcp/*gii,
+            ./data/freesurfer/fsaverage/label/*annot,
+            ./data/freesurfer/fsaverage/surf/*pial,
+            ./data/freesurfer/fsaverage/surf/*inflated,
+            ./data/freesurfer/fsaverage/surf/*sphere
             ]
         },
     install_requires=requirements,
