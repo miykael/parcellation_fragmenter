@@ -51,10 +51,12 @@ setup(
     include_package_data=True,
     package_data={
         'fragmenter': [
-            './data/hcp/*label.gii',
-            './data/hcp/*surf.gii',
-            './data/freesurfer/fsaverage/label/*annot',
-            './data/freesurfer/fsaverage/surf/*[pial, inflated, sphere]'
+            ./data/hcp/*label.gii,
+            ./data/hcp/*surf.gii,
+            ./data/freesurfer/fsaverage/label/*annot,
+            ./data/freesurfer/fsaverage/surf/*pial,
+            ./data/freesurfer/fsaverage/surf/*inflated,
+            ./data/freesurfer/fsaverage/surf/*sphere
             ]
         },
     install_requires=requirements,
