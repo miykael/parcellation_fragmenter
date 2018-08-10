@@ -2,11 +2,11 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    = "-W"  # This flag turns warnings into errors.
+SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = PackagingScientificPython
-SOURCEDIR     = source
-BUILDDIR      = build
+SPHINXPROJ    = fragmenter
+SOURCEDIR     = .
+BUILDDIR      = _build
 
 # Put it first so that "make" without argument is like "make help".
 help:

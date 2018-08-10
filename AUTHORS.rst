@@ -11,6 +11,6 @@ Contributors
 ------------
 
 * Kristian Eschenburg <keschenb@uw.edu>
-* Claudio Toro Serey >
-
-None yet. Why not be the first? See: CONTRIBUTING.rst
+* Claudio Toro Serey <>
+* Amanda Sidwell <>
+* Ross Markello <>
