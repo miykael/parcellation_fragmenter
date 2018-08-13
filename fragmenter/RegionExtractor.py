@@ -30,11 +30,11 @@ class Extractor(object):
         except nib.filebasedimages.ImageFileError:
             cdata, ctab, roi_names = nib.freesurfer.io.read_annot(label_file)
             rois = [k.decode('utf-8') for k in roi_names]
-            roi_index = [roi_names.index(np.bytes_(n)) for n in rois[1:]]
+            roi_index = [roi_names.index(np.bytes_(n)) for n in rois]
         else:
             pass
         finally:
-            reg2val = dict(zip(rois, roi_index))
+            reg2val = dict(zip(rois[1:], roi_index[1:]))
 
         parcels = {reg: np.where(
             cdata == reg2val[reg])[0] for reg in reg2val.keys()}
