@@ -80,7 +80,6 @@ class Fragment(object):
                 n_clusters = np.int32(np.floor(
                     samples.shape[0]/size))
 
-            # fragment whole brain
             label = clust_funcs[method](n_clusters, samples)
 
         # otherwise, if parcels AND rois are provided
@@ -106,8 +105,11 @@ class Fragment(object):
                         parcel_samples = vertices[parcel_idx, :]
 
                     if size:
-                        n_clusters = np.int32(np.floor(
+                        n_clusters = np.int32(np.ceil(
                             parcel_samples.shape[0]/size))
+
+                    if n_clusters > parcel_samples.shape[0]:
+                        n_clusters = 1
 
                     # fragment
                     clusters = clust_funcs[method](
