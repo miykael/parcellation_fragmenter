@@ -54,7 +54,8 @@ class Extractor(object):
     def map_subregions(self, parcels, fragments):
 
         """
-        For each region in parcels, generate a nested mapping structure of region name --> sub-region ID --> sub-region indices.
+        For each region in parcels, generate a nested mapping structure of
+        region name --> sub-region ID --> sub-region indices.
 
         Parameters:
         - - - - -
