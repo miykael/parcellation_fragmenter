@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct  3 15:31:06 2016
-
-@author: kristianeschenburg
-"""
-
 import networkx as nx
 import numpy as np
 

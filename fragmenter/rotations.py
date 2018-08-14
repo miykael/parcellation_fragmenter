@@ -1,7 +1,7 @@
 import numpy as np
 
 """
-Methods to generate rotation matrices.
+Methods to generate 3D rotation matrices.
 Code converted from original Matlab version:
  * https://github.com/petercorke/robotics-toolbox-matlab
 

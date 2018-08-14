@@ -12,11 +12,11 @@ class Extractor(object):
         path to input label or annotation file
     """
 
-    def __init__(self):
+    def __init__(self, label_file):
 
-        pass
+        self.label_file = label_file
 
-    def get_label_table(self, label_file):
+    def map_regions(self):
 
         """
         For each region in an annotation or label file, map the region
@@ -27,6 +27,8 @@ class Extractor(object):
         label_file : str
             full path to annotation or label file
         """
+
+        label_file = self.label_file
 
         try:
             label_obj = nib.load(label_file)
