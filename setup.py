@@ -50,13 +50,7 @@ setup(
         },
     include_package_data=True,
     package_data={
-        'fragmenter': [
-            ./data/hcp/*gii,
-            ./data/freesurfer/fsaverage/label/*annot,
-            ./data/freesurfer/fsaverage/surf/*pial,
-            ./data/freesurfer/fsaverage/surf/*inflated,
-            ./data/freesurfer/fsaverage/surf/*sphere
-            ]
+        'fragmenter': []
         },
     install_requires=requirements,
     license="BSD (3-clause)",
