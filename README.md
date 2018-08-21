@@ -45,30 +45,35 @@ from fragmenter import colormaps # for generating new colormaps
 # Define surface file and annotation file.
 # If you are using Gifti-structured data, use ```nb.load()``` instead,
 # the vertices and faces will exists as GiftiDataArrays objects
-verts, faces = nb.freesurfer.io.read_geometry('../data/hcp/L.sphere.32k_fs_LR.surf.gii')
+verts, faces = nb.freesurfer.io.read_geometry(
+  '../data/hcp/L.sphere.32k_fs_LR.surf.gii')
 
 # Extract region-specific indices
 # Likewise, you can also specific an HCP-styped Gifti Label object
 # with extension .label.gii.
-E = RegionExtractor.Extractor('../data/freesurfer/fsaverage/label/lh.aparc.annot')
+E = RegionExtractor.Extractor(
+  '../data/freesurfer/fsaverage/label/lh.aparc.annot')
 parcels = E.map_regions()
 
 # Define set of regions of interest.  These region names are dependent
 # on the region IDs in the original annotation / label file.
-rois=['temporalpole','inferiortemporal','middletemporal','superiortemporal',
-      'transversetemporal','bankssts',
+rois=['temporalpole','inferiortemporal','middletemporal',
+  'superiortemporal', 'transversetemporal','bankssts',
       'inferiorparietal','supramarginal']
 ```
 
 ```python
 # Instantiate the fragmentation object and generate the sub-regions.
 temporal = Fragment.Fragment(n_clusters=75)
-temporal.fit(vertices=verts, faces=faces, parcels=parcel_maps, rois=rois, size=15)
+temporal.fit(vertices=verts, faces=faces,
+  parcels=parcel_maps, rois=rois, size=15)
 
 # If you want to generate pretty color-scheme with a gradient along the
 # inferior-superior axis, do the following:
-[_, ctab, names, remapped] = colormaps.get_ctab_and_names(verts, temporal.label_)
-plotting.view_surf([verts, faces], remapped, threshold=0.1, cmap='plasma')
+[_, ctab, names, remapped] = colormaps.get_ctab_and_names(verts,
+  temporal.label_)
+plotting.view_surf([verts, faces],
+  remapped, threshold=0.1, cmap='plasma')
 ```
 
 <img src="./figures/example_temporal.png" width="60%">
