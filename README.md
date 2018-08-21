@@ -26,9 +26,8 @@ The following figure shows an example of a fragmentation of the primary auditory
 # How to install it
 
 ```bash
-git clone
-https://github.com/miykael/parcellation_fragmenter.git
-cd ./parcellation_fragmenter
+git clone https://github.com/miykael/parcellation_fragmenter.git
+cd ./parcellation_fragmente
 pip install -e .
 ```
 
@@ -72,7 +71,7 @@ temporal.fit(vertices=verts, faces=faces, parcels=parcel_maps, rois=rois, size=1
 plotting.view_surf([verts, faces], remapped, threshold=0.1, cmap='plasma')
 ```
 
-<img src="./figures/example_temporal.png" width="100%">
+<img src="./figures/example_temporal.png" width="80%">
 
 ```python
 # We can then save the map with:
