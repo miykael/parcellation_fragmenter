@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class NullBase(ABC):
 
     """
-    Null model base class.
+    Abstract class for generating null model parcellations.
     """
 
     @abstractmethod

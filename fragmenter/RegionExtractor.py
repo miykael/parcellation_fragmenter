@@ -3,9 +3,13 @@ import numpy as np
 
 
 class Extractor(object):
+
     """
     Class to extract unique indices of all regions in a
-    label / annotation file.
+    label / annotation file.  Expects that the input file's label table
+    keys are of the form "L/R_{region_name}" where L/R referes to the
+    hemisphere.
+
     Parameters:
     - - - - -
     label_file : string
@@ -30,15 +34,21 @@ class Extractor(object):
 
         label_file = self.label_file
 
+        # try loading HCP-style label file
         try:
+
             label_obj = nib.load(label_file)
+            # get label vector
             cdata = label_obj.darrays[0].data
+            # get label table mapping label values to region ID
             label_table = label_obj.labeltable.get_labels_as_dict()
 
             rois = list(map(str, label_table.values()))
-            rois = [reg.split('_')[-1] for reg in rois]
+
+            rois = ['_'.join(reg.split('_')[1:]) for reg in rois]
             roi_index = list(label_table.keys())
 
+        # otherwise try loaded freesurfer-style annotation
         except nib.filebasedimages.ImageFileError:
             cdata, ctab, roi_names = nib.freesurfer.io.read_annot(label_file)
             rois = [k.decode('utf-8') for k in roi_names]
@@ -46,6 +56,7 @@ class Extractor(object):
         else:
             pass
         finally:
+            # exclude the first region (generally ??? or "unknown")
             reg2val = dict(zip(rois[1:], roi_index[1:]))
 
         parcels = {reg: np.where(
