@@ -27,7 +27,7 @@ The following figure shows an example of a fragmentation of the primary auditory
 
 ```bash
 git clone https://github.com/miykael/parcellation_fragmenter.git
-cd ./parcellation_fragmente
+cd ./parcellation_fragmenter
 pip install -e .
 ```
 
