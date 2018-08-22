@@ -18,7 +18,7 @@ The following figure shows an example of a whole surface fragmentation for 16, 6
 
 <img src="./figures/summary_gmm.png" width="100%">
 
-The following figure shows an example of a fragmentation of the primary auditory cortex for 4, 16, 64, 256, 1024 using a K-Means approach:
+The following figure shows an example of a fragmentation of the superior temporal cortex for 4, 16, 64, 256, 1024 using a K-Means approach:
 
 <img src="./figures/summary_A1_kmeans.png" width="100%">
 
