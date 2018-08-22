@@ -45,3 +45,7 @@ The following figure shows an example of a fragmentation of the superior tempora
 # How to help with it
 
 There are still many things that can be changed/adapted/added. So please feel free to check-out the [issues section](https://github.com/miykael/parcellation_fragmenter/issues) for what can be done, fork the project, send me a PR or give us a feedback!
+
+# License
+
+This project is licensed under BSD 3-Clause License.
