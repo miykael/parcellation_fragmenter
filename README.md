@@ -18,7 +18,7 @@ The following figure shows an example of a whole surface fragmentation for 16, 6
 
 <img src="./figures/summary_gmm.png" width="100%">
 
-The following figure shows an example of a fragmentation of the primary auditory cortex for 4, 16, 64, 256, 1024 using a K-Means approach:
+The following figure shows an example of a fragmentation of the superior temporal cortex for 4, 16, 64, 256, 1024 using a K-Means approach:
 
 <img src="./figures/summary_A1_kmeans.png" width="100%">
 
@@ -88,3 +88,7 @@ F.write(annot_name, use_pretty_colors=True)
 # How to help with it
 
 There are still many things that can be changed/adapted/added. So please feel free to check-out the [issues section](https://github.com/miykael/parcellation_fragmenter/issues) for what can be done, fork the project, send me a PR or give us a feedback!
+
+# License
+
+This project is licensed under BSD 3-Clause License.
