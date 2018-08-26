@@ -21,14 +21,12 @@ def get_equally_spaced_colors(n):
     return color_table
 
 
-def get_ctab_and_names(n_clusters, coords, labels, use_pretty_colors=True):
+def get_ctab_and_names(coords, labels, use_pretty_colors=True):
     """
-    Returns color table and names - pretty color gradient order optional.
+    Generate a label table for from an existing label map.
 
     Parameters:
     - - - - -
-    n_clusters : int
-        number of parcels
     coords : array
         vertex coordinates
     labels : array
@@ -37,13 +35,24 @@ def get_ctab_and_names(n_clusters, coords, labels, use_pretty_colors=True):
         generate pretty colors
     """
 
+    # only include vertices that have non-zero label-values
+    full_map = np.zeros(labels.shape)
+
+    idx = (labels > 0)
+    coords = coords[idx, :]
+    labels = labels[idx]
+
+    # get unique label values
+    unique_ids = np.unique(labels)
+    n_clusters = len(unique_ids)
+
     # Create color table (first element = [0, 0, 0] for 'unknown' region)
     n_colors = n_clusters + 1
     ctab = np.hstack((get_equally_spaced_colors(n_colors), [[0]] * n_colors))
 
     # Create name list for new regions
     names = [np.bytes_('unknown')] + \
-        [np.bytes_('parc%05d' % (i + 1)) for i in range(n_clusters)]
+        [np.bytes_('parc_%i' % (i)) for i in unique_ids]
 
     # Reorder table and names according distance to sphere "bottom"
     if use_pretty_colors:
@@ -54,11 +63,14 @@ def get_ctab_and_names(n_clusters, coords, labels, use_pretty_colors=True):
 
         # Find new order of labels
         sphere_bottom = [0, 0, -100]
-        label_order = np.argsort(np.linalg.norm(
+        keys = np.argsort(np.linalg.norm(
             label_centers - sphere_bottom, axis=1)) + 1
 
         # Relabels labels accordingly
         labels = np.array(
-            [np.where(label_order == l)[0][0] + 1 for l in labels])
+            [np.where(keys == l)[0][0] + 1 for l in labels])
 
-    return ctab, names, labels
+    full_map[idx] = labels
+    labels = np.int32(full_map)
+
+    return [keys, ctab, names, labels]

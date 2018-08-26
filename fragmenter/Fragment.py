@@ -1,12 +1,16 @@
-from fragmenter import adjacency
-from fragmenter import clusterings
 import numpy as np
 
+from fragmenter import adjacency
+from fragmenter import clusterings
+from fragmenter import colormaps
+
+from nibabel import freesurfer
+
+# define clustering options
 METHODS = ['gmm', 'k_means', 'spectral', 'ward']
 
 
 class Fragment(object):
-
     """
     Class to fragment the cortical surface into equal sized parcels.
 
@@ -47,6 +51,10 @@ class Fragment(object):
             algorithm to use for generating parcels
         """
 
+        # make sure method exists in allowed algorithms
+        assert method in METHODS
+        assert isinstance(size, int)
+
         # define function dictionary
         clust_funcs = {
             'gmm': clusterings.gmm,
@@ -54,10 +62,7 @@ class Fragment(object):
             'spectral': clusterings.spectral_clustering,
             'ward': clusterings.ward}
 
-        # make sure method exists in allowed algorithms
-        assert method in METHODS
-        assert isinstance(size, int)
-
+        self.vertices = vertices
         n_clusters = self.n_clusters
 
         # if provided method is spectral,
@@ -67,7 +72,7 @@ class Fragment(object):
             surf_adj.generate()
 
         # if parcels and rois are None, just parcellate the whole cortex
-        if not parcels and not rois:
+        if not parcels or not rois:
             # if method is spectral, convert whole adjacency list to
             # adjacency matrix
             if method == 'spectral':
@@ -88,14 +93,15 @@ class Fragment(object):
             label = np.zeros((vertices.shape[0]))
 
             # loop over regions
+            lmax = 0
             for region in rois:
                 print(region)
                 # make sure the region has vertices
                 if np.any(parcels[region]):
                     # get region indices
                     parcel_idx = parcels[region]
-                    # if method is spectral, extract intra-region
-                    # adjacency matrix
+
+                    # if method == spectral, regional adjacency matrix
                     if method == 'spectral':
                         parcel_samples = surf_adj.filtration(
                             filter_indices=parcel_idx, toArray=True)
@@ -104,6 +110,8 @@ class Fragment(object):
                     else:
                         parcel_samples = vertices[parcel_idx, :]
 
+                    # make sure that the desired number of clusters does not
+                    # exceed the number of samples to cluster
                     if size:
                         n_clusters = np.int32(np.ceil(
                             parcel_samples.shape[0]/size))
@@ -111,13 +119,29 @@ class Fragment(object):
                     if n_clusters > parcel_samples.shape[0]:
                         n_clusters = 1
 
-                    # fragment
+                    # apply clustering
                     clusters = clust_funcs[method](
                         n_clusters, parcel_samples)
 
+                    # ensure that cluster ID is += by current cluster count
+                    clusters += lmax
+
+                    lmax += len(np.unique(clusters))
                     label[parcel_idx] = clusters
 
-        # Increase labels by one to prevent transparent mesh
-        label += 1
+        self.label_ = np.int32(label)
 
-        self.label_ = label
+    def write(self, output_name, use_pretty_colors=True):
+        """
+        Write the fragmented label file to FreeSurfer annotation file.
+
+        Parameters:
+        - - - - -
+        output_name: string
+            name of save file to
+        """
+
+        [keys, ctab, names, remapped] = colormaps.get_ctab_and_names(
+            self.vertices, self.label_, use_pretty_colors=use_pretty_colors)
+
+        freesurfer.io.write_annot(output_name, remapped, ctab, names)

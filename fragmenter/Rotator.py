@@ -1,4 +1,4 @@
-from fragmenter import NullBase
+from NullBase import NullBase
 from fragmenter import rotations
 import numpy as np
 from scipy.spatial import KDTree
@@ -6,8 +6,9 @@ from scipy.spatial import KDTree
 
 class Rotator(NullBase.NullBase):
     """
-    Class to generate null models of parcellations by perturbing an existing
-    map using KD-Trees for the nearest neighor search.
+    Class to generate null models of parcellations by randomly rotating an
+    existing map around a sphere.  Labels are resampled by performing an
+    approximate nearest neighbor search using a KD-Tree.
 
     Parameters:
     - - - - -
@@ -28,6 +29,12 @@ class Rotator(NullBase.NullBase):
     def fit(self, maxd_x=10, maxd_y=10, maxd_z=10):
         """
         Wrapper method for generating null models.
+
+        Parameters:
+        - - - - -
+        maxd_x, maxd_y, maxd_z: float > 0
+            min,max range of from which to uniformly sample a rotation angle
+            from in the x, y, and z directions.
         """
 
         rotated = self._rotate(maxd_x, maxd_y, maxd_z)

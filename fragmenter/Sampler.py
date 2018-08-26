@@ -1,4 +1,4 @@
-from fragmenter import NullBase
+from NullBase import NullBase
 from fragmenter import adjacency
 import numpy as np
 
@@ -7,7 +7,9 @@ class Sampler(NullBase.NullBase):
 
     """
     Class to generate parcellation null models through resampling of
-    neighborhood of labels.
+    neighborhood labels.  Using a Gibb's sampling approach, resamples the
+    current label of a vertex with probability according to how many
+    directly adjacent vertices have are assigned a label.
 
     Parameters:
     - - - - -
@@ -35,7 +37,7 @@ class Sampler(NullBase.NullBase):
     def fit(self, iterations=1):
 
         """
-        wrapper method to generate new sampled null model.
+        Wrapper method to generate resampled null model.
 
         Parameters:
         - - - - -
@@ -45,7 +47,6 @@ class Sampler(NullBase.NullBase):
 
         label = self.label.copy()
 
-        print('Generating adjacency structure.')
         surf_adj = adjacency.SurfaceAdjacency(self.vertices, self.faces)
         surf_adj.generate()
         surf_adj = surf_adj.filtration(filter_indices=self.mask)
