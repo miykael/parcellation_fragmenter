@@ -139,7 +139,7 @@ class Fragment(object):
         - - - - -
         output_name: string
             name of save file. Must contain desired file extension (e.g. '.annot', '.csv') 
-        to_file: boolean
+        to_file: bool
             indicate whether to create a txt or csv file instead 
         """
 

@@ -56,7 +56,7 @@ def get_ctab_and_names(coords, labels, use_pretty_colors=True):
 
     # Reorder table and names according distance to sphere "bottom"
     # Set keys globally so return doesn't break if pretty_colors=false
-    keys="No remapping done"
+    keys="No color remapping done"
     if use_pretty_colors:
 
         # Compute mean height (on z-axis) per label to resort color table
