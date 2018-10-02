@@ -131,7 +131,7 @@ class Fragment(object):
 
         self.label_ = np.int32(label)
 
-    def write(self, output_name, use_pretty_colors=True):
+    def write(self, output_name, use_pretty_colors=True, to_file=False):
         """
         Write the fragmented label file to FreeSurfer annotation file.
 
@@ -141,7 +141,12 @@ class Fragment(object):
             name of save file to
         """
 
-        [keys, ctab, names, remapped] = colormaps.get_ctab_and_names(
-            self.vertices, self.label_, use_pretty_colors=use_pretty_colors)
+        # If labels are to be exported to csv
+        if to_file:
+            np.savetxt((output_name + ".csv"), self.label_, fmt='%5.0f')
+        # Otherwise write an annotation file with freesurfer    
+        else:
+            [keys, ctab, names, remapped] = colormaps.get_ctab_and_names(
+                self.vertices, self.label_, use_pretty_colors=use_pretty_colors)
 
-        freesurfer.io.write_annot(output_name, remapped, ctab, names)
+            freesurfer.io.write_annot(output_name, remapped, ctab, names)
