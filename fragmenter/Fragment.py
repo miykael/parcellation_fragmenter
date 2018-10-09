@@ -143,13 +143,19 @@ class Fragment(object):
             indicate whether to create a txt or csv file instead 
         """
 
-        # If labels are to be exported to csv
+        # If labels are to be exported to csv or txt
         if to_file:
-            np.savetxt(output_name, self.label_, fmt='%5.0f')
+            if output_name.endswith(('.txt','.csv')):
+                np.savetxt(output_name, self.label_, fmt='%5.0f')
+            else:    
+                print('Warning: neither csv or txt extensions provided...')
         # Otherwise write an annotation file with freesurfer    
         else:
-            [keys,ctab,names,remapped] = colormaps.get_ctab_and_names(
-                self.vertices, self.label_, use_pretty_colors=self.use_pretty_colors)
-            freesurfer.io.write_annot(output_name, remapped, ctab, names)
+            if output_name.endswith('.annot'):
+                [keys,ctab,names,remapped] = colormaps.get_ctab_and_names(
+                    self.vertices, self.label_, use_pretty_colors=self.use_pretty_colors)
+                freesurfer.io.write_annot(output_name, remapped, ctab, names)
+            else:
+                print('Warning: .annot file extension not provided...')    
 
 

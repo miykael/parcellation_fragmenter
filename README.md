@@ -34,7 +34,7 @@ pip install -e .
 
 # How to run it
 
-For a detailed walk-through of how to use the code, see ./notebooks/Demo.ipynb.
+**Note: For a detailed walk-through of how to use the code, see ./notebooks/Demo.ipynb.**
 
 ```python
 import nibabel as nb # for loading surfaces
@@ -81,7 +81,7 @@ plotting.view_surf([verts, faces],
 ```python
 # We can then save the map with:
 annot_name = '../data/freesurfer/fsaverage/label/lh.temporal.annot'
-F.write(annot_name, use_pretty_colors=True)
+F.write(annot_name)
 
 ```
 
