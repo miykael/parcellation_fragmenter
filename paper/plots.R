@@ -2,9 +2,9 @@ library(corrplot)
 library(ggplot2)
 
 # load the data
-mat100 <- as.matrix(read.csv('simLbls100.csv', header = F))
-mat10 <- as.matrix(read.csv('simLbls10.csv', header = F))
-timing <- read.csv('TimingData.csv')
+mat100 <- as.matrix(read.csv('../notebooks/simLbls100.csv', header = F))
+mat10 <- as.matrix(read.csv('../notebooks/simLbls10.csv', header = F))
+timing <- read.csv('../notebooks/TimingData.csv')
 
 # name the axes of the matrices
 method <- rep(c("GMM", "K-Means", "Ward"), each = 10)
