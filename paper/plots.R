@@ -57,10 +57,10 @@ m <- ggplot(aes(size, time, fill = method), data = timing) +
         text = element_text(size = 15))
 
 # to save the m plot as pdf
-ggsave('method_times.pdf',
+ggsave('method_times.png',
        plot = m,
        width = 6,
        height = 4,
        units = "in",
        dpi = "retina",
-       device = "pdf")
+       device = "png")
