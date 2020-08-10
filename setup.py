@@ -23,7 +23,7 @@ pip install --upgrade pip
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as readme_file:
+with open(path.join(here, 'README.md'), encoding='utf-8') as readme_file:
     readme = readme_file.read()
 
 with open(path.join(here, 'requirements.txt')) as requirements_file:
@@ -39,9 +39,9 @@ setup(
     description="Fragments FreeSurfer parcellation annotation' \
         ' in N-equal sized parcels.",
     long_description=readme,
-    author="Kristian Eschenburg",
-    author_email='keschenb@uw.edu',
-    url='https://github.com/kristianeschenburg/fragmenter',
+    author="Michael Notter",
+    author_email='michaelnotter@hotmail.com',
+    url='https://github.com/miykael/parcellation_fragmenter',
     packages=find_packages(exclude=['docs', 'tests']),
     entry_points={
         'console_scripts': [
@@ -55,7 +55,6 @@ setup(
     install_requires=requirements,
     license="BSD (3-clause)",
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
     ],
