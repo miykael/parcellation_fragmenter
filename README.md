@@ -92,3 +92,13 @@ There are still many things that can be changed/adapted/added. So please feel fr
 # License
 
 This project is licensed under BSD 3-Clause License.
+
+# Authors
+
+* Michael Notter <michaelnotter@hotmail.com> (**maintainer**)
+* Kristian Eschenburg <keschenb@uw.edu>
+* Claudio Toro Serey <ctoro@bu.edu>
+* Amanda Sidwell <asidwell@mgh.harvard.edu>
+* Peer Herholz <herholz.peer@gmail.com>
+* Omer Faruk Gulban <faruk.gulban@maastrichtuniversity.nl>
+* Ross Markello <rossmarkello@gmail.com>
