@@ -157,5 +157,3 @@ class Fragment(object):
                 freesurfer.io.write_annot(output_name, remapped, ctab, names)
             else:
                 print('Warning: .annot file extension not provided...')    
-
-
