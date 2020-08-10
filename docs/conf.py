@@ -29,10 +29,10 @@ source_suffix = ['.rst', '.md']
 # -- Project information -----------------------------------------------------
 
 project = 'fragmenter'
-copyright = '2018, Michael Notter, Claudio Toro Serey, Amanda Sidwell, '\
-    'Ross Markello, Kristian Eschenburg'
-author = 'Michael Notter, Claudio Toro Serey, Amanda Sidwell, '\
-    'Ross Markello, Kristian Eschenburg'
+copyright = '2020, Kristian Eschenburg, Claudio Toro Serey, Peer Herholz, '\
+    'Amanda Sidwell, Ross Markello, Michael Notter'
+author = 'Kristian Eschenburg, Claudio Toro Serey, Peer Herholz, '\
+    'Amanda Sidwell, Ross Markello, Michael Notter'
 
 # The short X.Y version
 version = ''
@@ -146,8 +146,8 @@ latex_documents = [
     (
     master_doc,
     'fragmenter.tex', 'fragmenter Documentation',
-     'Michael Notter, Claudio Toro Serey, Amanda Sidwell, '\
-     'Ross Markello, Kristian Eschenburg', 'manual'),
+     'Kristian Eschenburg, Claudio Toro Serey, Peer Herholz, '\
+     'Amanda Sidwell, Ross Markello, Michael Notter', 'manual'),
 ]
 
 
@@ -168,7 +168,8 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'fragmenter', 'fragmenter Documentation',
-     author, 'fragmenter', 'One line description of project.',
+     author, 'fragmenter',
+     'Fragments FreeSurfer parcellation annotation in N-equal sized parcels.',
      'Miscellaneous'),
 ]
 
