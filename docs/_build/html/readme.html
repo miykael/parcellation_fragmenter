@@ -1,54 +1,57 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>fragmenter &mdash; fragmenter  documentation</title>
+  <title>&lt;no title&gt; &mdash; fragmenter  documentation</title>
   
 
   
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Credits" href="authors.html" />
     <link rel="prev" title="Welcome to fragmenter’s documentation!" href="index.html" /> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="index.html" class="icon icon-home"> fragmenter
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> fragmenter
           
 
           
@@ -71,6 +74,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -78,14 +82,14 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">fragmenter</a></li>
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Credits</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -124,9 +128,9 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>fragmenter</li>
+      <li>&lt;no title&gt;</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,25 +149,86 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="fragmenter">
-<h1>fragmenter<a class="headerlink" href="#fragmenter" title="Permalink to this headline">¶</a></h1>
-<a class="reference external image-reference" href="https://github.com/miykael/parcellation_fragmenter/issues/"><img alt="https://img.shields.io/github/issues/miykael/parcellation_fragmenter.svg" src="https://img.shields.io/github/issues/miykael/parcellation_fragmenter.svg" /></a>
-<a class="reference external image-reference" href="https://github.com/miykael/parcellation_fragmenter/pulls/"><img alt="https://img.shields.io/github/issues-pr/miykael/parcellation_fragmenter.svg" src="https://img.shields.io/github/issues-pr/miykael/parcellation_fragmenter.svg" /></a>
-<a class="reference external image-reference" href="https://GitHub.com/miykael/parcellation_fragmenter/graphs/contributors/"><img alt="https://img.shields.io/github/contributors/miykael/parcellation_fragmenter.svg" src="https://img.shields.io/github/contributors/miykael/parcellation_fragmenter.svg" /></a>
-<a class="reference external image-reference" href="https://github.com/miykael/parcellation_fragmenter/commits/master"><img alt="https://github-basic-badges.herokuapp.com/commits/miykael/parcellation_fragmenter.svg" src="https://github-basic-badges.herokuapp.com/commits/miykael/parcellation_fragmenter.svg" /></a>
-<a class="reference external image-reference" href="https://github.com/miykael/parcellation_fragmenter/archive/master.zip"><img alt="https://github-size-badge.herokuapp.com/miykael/parcellation_fragmenter.svg" src="https://github-size-badge.herokuapp.com/miykael/parcellation_fragmenter.svg" /></a>
-<a class="reference external image-reference" href="http://hits.dwyl.io/miykael/parcellation_fragmenter"><img alt="http://hits.dwyl.io/miykael/parcellation_fragmenter.svg" src="http://hits.dwyl.io/miykael/parcellation_fragmenter.svg" /></a>
-<p>Fragment a cortical surface into a parameterized number of parcels.  We imagine that this method could be use as a feature extraction method for machine learning approaches later on.</p>
-<p>The class ‘Fragment’ takes in as input a surface mesh and applies clustering algorithms to the mesh.  Follwing the ‘sklearn’ convention, the fragmentation is generated using a ‘fit’ method.  Additionally, we provide the option to constrain fragmentation to follow previously generated anatomical boundaries.</p>
-<p>The fragmentation can be performed with Gaussian Mixture Models, K-Means, Ward Agglomerative Clustering, and Spectral Clustering.</p>
-<p>The following figure shows an example of a whole surface fragmentation with 16, 64, 256, 1024, and 4096 parcels using GMMs:</p>
-<img alt="https://raw.githubusercontent.com/miykael/parcellation_fragmenter/master/figures/summary_gmm.png" src="https://raw.githubusercontent.com/miykael/parcellation_fragmenter/master/figures/summary_gmm.png" />
-<p>The following figure shows an example of a fragmentation of the primary auditory cortex with 4, 16, 64, 256, 1024 using K-Means:</p>
-<img alt="https://raw.githubusercontent.com/miykael/parcellation_fragmenter/master/figures/summary_A1_kmeans.png" src="https://raw.githubusercontent.com/miykael/parcellation_fragmenter/master/figures/summary_A1_kmeans.png" />
+  <p>[![GitHub issues](<a class="reference external" href="https://img.shields.io/github/issues/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/issues/">https://img.shields.io/github/issues/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/issues/</a>)
+[![GitHub pull-requests](<a class="reference external" href="https://img.shields.io/github/issues-pr/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/pulls/">https://img.shields.io/github/issues-pr/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/pulls/</a>)
+[![GitHub contributors](<a class="reference external" href="https://img.shields.io/github/contributors/miykael/parcellation_fragmenter.svg)](https://GitHub.com/miykael/parcellation_fragmenter/graphs/contributors/">https://img.shields.io/github/contributors/miykael/parcellation_fragmenter.svg)](https://GitHub.com/miykael/parcellation_fragmenter/graphs/contributors/</a>)
+[![GitHub Commits](<a class="reference external" href="https://github-basic-badges.herokuapp.com/commits/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/commits/master">https://github-basic-badges.herokuapp.com/commits/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/commits/master</a>)
+[![GitHub size](<a class="reference external" href="https://github-size-badge.herokuapp.com/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/archive/master.zip">https://github-size-badge.herokuapp.com/miykael/parcellation_fragmenter.svg)](https://github.com/miykael/parcellation_fragmenter/archive/master.zip</a>)
+[![GitHub HitCount](<a class="reference external" href="http://hits.dwyl.io/miykael/parcellation_fragmenter.svg)](http://hits.dwyl.io/miykael/parcellation_fragmenter">http://hits.dwyl.io/miykael/parcellation_fragmenter.svg)](http://hits.dwyl.io/miykael/parcellation_fragmenter</a>)</p>
+<p># Parcellation Fragmenter</p>
+<p>Fragments FreeSurfer parcellation annotation in N-equal sized parcels. Besides looking beautiful, such surface parcellation could be used as feature extract for machine learning approaches or similar.</p>
+<p>The current version takes either the whole FreeSurfer surface and devides it into N equal sized parcels or it takes a predefined region of interest (ROI), specified by FreeSurfer’s <cite>aparc.annot</cite> file and fragments this region in N equal sized parcels.</p>
+<p>The parcellation can be done by using a Gaussian Mixed Model, a Ward or a K-Means approach.</p>
+<p>The following figure shows an example of a whole surface fragmentation for 16, 64, 256, 1024, 4096 parcels using a Gaussian Mixed Models approach:</p>
+<p>&lt;img src=”./figures/summary_gmm.png” width=”100%”&gt;</p>
+<p>The following figure shows an example of a fragmentation of the superior temporal cortex for 4, 16, 64, 256, 1024 using a K-Means approach:</p>
+<p>&lt;img src=”./figures/summary_A1_kmeans.png” width=”100%”&gt;</p>
 <p># How to install it</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/miykael/parcellation_fragmenter.git</span>
+<span class="pre">cd</span> <span class="pre">./parcellation_fragmenter</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span>
+<span class="pre">`</span></code></p>
+<p># How to run it</p>
+<p><strong>Note: For a detailed walk-through of how to use the code, see ./notebooks/Demo.ipynb.</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
+import nibabel as nb # for loading surfaces
+from fragmenter import RegionExtractor # for extracting regional indices
+from fragmenter import Fragment # main fragmentation class
+from fragmenter import colormaps # for generating new colormaps</p>
+<p># Define surface file and annotation file.
+# If you are using Gifti-structured data, use <code class="docutils literal notranslate"><span class="pre">`nb.load()`</span></code> instead,
+# the vertices and faces will exists as GiftiDataArrays objects
+verts, faces = nb.freesurfer.io.read_geometry(</p>
+<blockquote>
+<div><p>‘../data/hcp/L.sphere.32k_fs_LR.surf.gii’)</p>
+</div></blockquote>
+<p># Extract region-specific indices
+# Likewise, you can also specific an HCP-styped Gifti Label object
+# with extension .label.gii.
+E = RegionExtractor.Extractor(</p>
+<blockquote>
+<div><p>‘../data/freesurfer/fsaverage/label/lh.aparc.annot’)</p>
+</div></blockquote>
+<p>parcels = E.map_regions()</p>
+<p># Define set of regions of interest.  These region names are dependent
+# on the region IDs in the original annotation / label file.
+rois=[‘temporalpole’,’inferiortemporal’,’middletemporal’,</p>
+<blockquote>
+<div><dl class="simple">
+<dt>‘superiortemporal’, ‘transversetemporal’,’bankssts’,</dt><dd><p>‘inferiorparietal’,’supramarginal’]</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
+# Instantiate the fragmentation object and generate the sub-regions.
+temporal = Fragment.Fragment(n_clusters=75)
+temporal.fit(vertices=verts, faces=faces,</p>
+<blockquote>
+<div><p>parcels=parcel_maps, rois=rois, size=15)</p>
+</div></blockquote>
+<p># If you want to generate pretty color-scheme with a gradient along the
+# inferior-superior axis, do the following:
+[_, ctab, names, remapped] = colormaps.get_ctab_and_names(verts,</p>
+<blockquote>
+<div><p><a href="#id25"><span class="problematic" id="id26">temporal.label_</span></a>)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>plotting.view_surf([verts, faces],</dt><dd><p>remapped, threshold=0.1, cmap=’plasma’)</p>
+</dd>
+</dl>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>&lt;img src=”./figures/example_temporal.png” width=”60%”&gt;</p>
+<p><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>python
+# We can then save the map with:
+annot_name = ‘../data/freesurfer/fsaverage/label/lh.temporal.annot’
+F.write(annot_name)</p>
+<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
 <p># How to help with it</p>
 <p>There are still many things that can be changed/adapted/added. So please feel free to check-out the [issues section](<a class="reference external" href="https://github.com/miykael/parcellation_fragmenter/issues">https://github.com/miykael/parcellation_fragmenter/issues</a>) for what can be done, fork the project, send me a PR or give us a feedback!</p>
-</div>
+<p># License</p>
+<p>This project is licensed under BSD 3-Clause License.</p>
 
 
            </div>
@@ -176,7 +241,7 @@
         <a href="authors.html" class="btn btn-neutral float-right" title="Credits" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to fragmenter’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to fragmenter’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -185,11 +250,19 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Michael Notter, Claudio Toro Serey, Amanda Sidwell, Ross Markello, Kristian Eschenburg.
+        
+        &copy; Copyright 2020, Kristian Eschenburg, Claudio Toro Serey, Peer Herholz, Amanda Sidwell, Ross Markello, Michael Notter
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -201,34 +274,16 @@
   </div>
   
 
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  <script type="text/javascript" src="_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
