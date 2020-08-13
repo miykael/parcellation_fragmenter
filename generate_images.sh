@@ -48,16 +48,16 @@ if [ '$1' = 'local' ]; then
   if [ '$2' = 'docker' ]; then
     echo "docker image will be build locally"
     # build image using the saved files
-    docker build -t bidsonym:test .
+    docker build -t parcellation_fragmenter:test .
   elif [ '$2' = 'singularity']; then
     echo "singularity image will be build locally"
     # build image using the saved files
-    singularity build bidsonym.simg Singularity
+    singularity build parcellation_fragmenter.simg Singularity
   elif [ '$2' = 'both' ]; then
     echo "docker and singularity images will be build locally"
     # build images using the saved files
-    docker build -t bidsonym:test .
-    singularity build bidsonym.simg Singularity
+    docker build -t parcellation_fragmenter:test .
+    singularity build parcellation_fragmenter.simg Singularity
   elif [ -z "$2" ]; then
     echo "Please indicate which image should be build. You can choose from docker, singularity or both."
   fi
